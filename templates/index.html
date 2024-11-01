@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oil Spill Detection</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('/static/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Bahnschrift, Arial, sans-serif;
+            height: 100vh;
+            text-align: center;
+            color: rgba(2, 61, 255, 0.655);
+        }
+        .container {
+            margin-top: 10px;
+            background-color: rgba(237, 237, 237, 0.8);
+            padding: 10px;
+            border-radius: 20px;
+        }
+        .drop-area {
+            border: 2px dashed #007bff;
+            border-radius: 10px;
+            height: 300px;
+            width: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 20px auto;
+        }
+        .btn-predict {
+            width: 500px;
+            margin: 20px auto;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: rgba(2, 61, 255, 0.655);
+        }
+        .error {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>OIL SPILL DETECTION USING AI</h1>
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            <div class="drop-area" id="drop-area">
+                <p>Drag & Drop Image Here or <br><span class="btn btn-primary" id="upload-button">Browse</span></p>
+                <input type="file" id="file" name="file" style="display: none;" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-predict" id="submit-button">Predict</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result" id="result">Prediction Result: <strong>Predicted Class: {{ prediction }}</strong></div>
+        {% elif error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+    </div>
+
+    <script>
+        const dropArea = document.getElementById('drop-area');
+        const fileInput = document.getElementById('file');
+        const uploadButton = document.getElementById('upload-button');
+
+        dropArea.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            dropArea.classList.add('active');
+        });
+
+        dropArea.addEventListener('dragleave', () => {
+            dropArea.classList.remove('active');
+        });
+
+        dropArea.addEventListener('drop', (event) => {
+            event.preventDefault();
+            const files = event.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files; // Assign dropped files to the input
+            }
+            dropArea.classList.remove('active');
+        });
+
+        uploadButton.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        // Function to hide the result after a delay
+        function hideResultAfterDelay() {
+            const resultElement = document.getElementById('result');
+            if (resultElement) {
+                setTimeout(() => {
+                    resultElement.style.display = 'none'; // Hide the result after 5 seconds
+                }, 5000); // Change to 8000 for 8 seconds
+            }
+        }
+
+        // Call the function to hide the result if it exists
+        document.addEventListener('DOMContentLoaded', hideResultAfterDelay);
+    </script>
+</body>
+</html>
