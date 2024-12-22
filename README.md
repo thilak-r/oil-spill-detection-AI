@@ -71,9 +71,5 @@ Fork the repository :
   <br><br>
 under guidance of [Dr Agughasi Victor Ikechukwu](https://github.com/Victor-Ikechukwu)
 
-vbnet
-Copy code
 
-
-This `README.md` file includes all essential details for understanding, installing, and using the project. Let me know if you'd like to add any additional sections or specifics.
 
