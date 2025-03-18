@@ -2,6 +2,8 @@
 
 ![Marine Life Savers](https://github.com/thilak-r/oil-spill-detection-AI/blob/main/sample_img.png) <!-- Add a relevant image link here if available -->
 
+Demo (Only frontend) : [Click Here](https://thilak-r.github.io/oil-spill-detection-AI/)
+
 ## Overview
 The **Oil Spill Detection AI** project leverages a convolutional neural network (CNN) model to detect oil spills in images. By automating this detection process, the system enables real-time monitoring and helps accelerate response times to protect marine ecosystems from oil pollution. The project is designed to assist in effective cleanup efforts by providing a fast and reliable tool for oil spill identification.
 
