@@ -7,7 +7,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-image: url('/static/bg.jpg');
+            background-image: url('static/bg.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -62,11 +62,7 @@
             <button type="submit" class="btn btn-primary btn-predict" id="submit-button">Predict</button>
         </form>
 
-        {% if prediction %}
-            <div class="result" id="result">Prediction Result: <strong>Predicted Class: {{ prediction }}</strong></div>
-        {% elif error %}
-            <div class="error">{{ error }}</div>
-        {% endif %}
+       
     </div>
 
     <script>
